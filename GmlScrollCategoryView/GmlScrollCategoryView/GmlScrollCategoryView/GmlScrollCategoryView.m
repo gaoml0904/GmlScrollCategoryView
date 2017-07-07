@@ -13,7 +13,6 @@
     UIImageView *scrollBgView;
     UIScrollView *mScrollView;
     UIView *moveView;
-    NSMutableArray *categoryNewMsgViewArrM;
     NSMutableArray *categoryBtnArrM;
     UIImageView *leftMoreimageView;
     UIImageView *rigthMoreimageView;
@@ -55,7 +54,6 @@
         
         _categoryArrM=[[NSMutableArray alloc] initWithArray:categoryArr];
         categoryBtnArrM=[[NSMutableArray alloc] init];
-        categoryNewMsgViewArrM=[[NSMutableArray alloc] init];
         
         scrollBgView=[[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:scrollBgView];
@@ -101,12 +99,6 @@
         }
         [categoryBtnArrM removeAllObjects];
         
-        for (int i=0;i<[categoryNewMsgViewArrM count];i++) {
-            UIImageView *newFlagView =[ categoryNewMsgViewArrM objectAtIndex:i];
-            [newFlagView removeFromSuperview];
-        }
-        [categoryNewMsgViewArrM removeAllObjects];
-        
         for (int i=0;i<[_categoryArrM count];i++) {
             NSString *categoryStr =[_categoryArrM objectAtIndex:i];
             UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -126,15 +118,6 @@
             
             CGSize size = [categoryStr boundingRectWithSize:CGSizeMake(btn.frame.size.width, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin|
                                                                                                  NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName : btn.titleLabel.font} context:nil].size;
-
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(btn.frame.size.width/2+size.width/2-4, btn.frame.size.height/2-size.height/2-4, 8, 8)];
-            imageView.image = [UIImage imageNamed:@"Message_has_new"];
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
-            imageView.tag = i;
-            imageView.hidden = true;
-            [btn addSubview:imageView];
-            
-            [categoryNewMsgViewArrM addObject:imageView];
             
             [categoryBtnArrM addObject:btn];
         }
@@ -250,18 +233,5 @@
 -(void)touchCategoryBtnWithTitle:(NSString*)title{
     [self moveCategoryWithTitle:title];
     [self touchCategoryBtn:[categoryBtnArrM objectAtIndex:_currentPage]];
-}
-
-- (void)updateNewMsgFlagIconWithTitle:(NSString *)title hideState:(BOOL)isHide{
-    if (title == nil || self.categoryArrM.count == 0) {
-        return;
-    }
-    NSInteger index = [self.categoryArrM indexOfObject:title];
-    if (index >= categoryNewMsgViewArrM.count) {
-        return;
-    }
-    
-    UIImageView *imgView = categoryNewMsgViewArrM[index];
-    imgView.hidden = isHide;
 }
 @end

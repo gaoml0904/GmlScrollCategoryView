@@ -25,5 +25,4 @@
 - (void)moveMoveView:(CGFloat)rate;
 - (void)moveCategoryWithTitle:(NSString*)title;
 - (void)touchCategoryBtnWithTitle:(NSString*)title;
-- (void)updateNewMsgFlagIconWithTitle:(NSString *)title hideState:(BOOL)isHide;
 @end
