@@ -10,6 +10,9 @@
 
 @interface ViewController : UIViewController
 
-
+@property(nonatomic,weak)UINavigationController *weakNavi;
+@property(nonatomic,copy)NSString *category;
+@property(nonatomic,assign)NSInteger index;
+-(void)getCategoryData;
 @end
 

@@ -16,6 +16,7 @@
 		ABB0F7081F0E31100082FF7C /* category_right_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB0F7021F0E31100082FF7C /* category_right_more@2x.png */; };
 		ABB0F7091F0E31100082FF7C /* GmlScrollCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB0F7041F0E31100082FF7C /* GmlScrollCategoryView.m */; };
 		ABB0F70A1F0E31100082FF7C /* GmlListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB0F7061F0E31100082FF7C /* GmlListScrollView.m */; };
+		ABD2A2141F0F203C003CD64B /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD2A2131F0F203C003CD64B /* DataProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		ABB0F7041F0E31100082FF7C /* GmlScrollCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GmlScrollCategoryView.m; sourceTree = "<group>"; };
 		ABB0F7051F0E31100082FF7C /* GmlListScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GmlListScrollView.h; sourceTree = "<group>"; };
 		ABB0F7061F0E31100082FF7C /* GmlListScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GmlListScrollView.m; sourceTree = "<group>"; };
+		ABD2A2121F0F203C003CD64B /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
+		ABD2A2131F0F203C003CD64B /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,7 @@
 		ABB0F6E61F0E2CDB0082FF7C /* GmlScrollCategoryView */ = {
 			isa = PBXGroup;
 			children = (
+				ABD2A2111F0F1FFB003CD64B /* DataProvider */,
 				ABB0F7001F0E31100082FF7C /* GmlScrollCategoryView */,
 				ABB0F6EA1F0E2CDB0082FF7C /* AppDelegate.h */,
 				ABB0F6EB1F0E2CDB0082FF7C /* AppDelegate.m */,
@@ -98,6 +102,15 @@
 				ABB0F7061F0E31100082FF7C /* GmlListScrollView.m */,
 			);
 			path = GmlScrollCategoryView;
+			sourceTree = "<group>";
+		};
+		ABD2A2111F0F1FFB003CD64B /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				ABD2A2121F0F203C003CD64B /* DataProvider.h */,
+				ABD2A2131F0F203C003CD64B /* DataProvider.m */,
+			);
+			path = DataProvider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +188,7 @@
 			files = (
 				ABB0F6EF1F0E2CDB0082FF7C /* ViewController.m in Sources */,
 				ABB0F6EC1F0E2CDB0082FF7C /* AppDelegate.m in Sources */,
+				ABD2A2141F0F203C003CD64B /* DataProvider.m in Sources */,
 				ABB0F7091F0E31100082FF7C /* GmlScrollCategoryView.m in Sources */,
 				ABB0F6E91F0E2CDB0082FF7C /* main.m in Sources */,
 				ABB0F70A1F0E31100082FF7C /* GmlListScrollView.m in Sources */,
@@ -330,6 +344,7 @@
 				ABB0F6FD1F0E2CDB0082FF7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

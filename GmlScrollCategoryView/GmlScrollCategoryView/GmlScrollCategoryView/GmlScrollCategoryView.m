@@ -59,39 +59,39 @@
         
         scrollBgView=[[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:scrollBgView];
-        scrollBgView.backgroundColor = [UIColor colorWithHexString:@"0xf5f5f5"];
+        scrollBgView.backgroundColor = [UIColor colorWithRed:245.0/256.0 green:245.0/256.0 blue:245.0/256.0 alpha:1];
         scrollBgView.userInteractionEnabled=YES;
         
-        leftMoreimageView=[[UIImageView alloc] initWithFrame:CGRectMake((IPAD_DEVICE)?10:5, 0, 10, HEIGHT(scrollBgView))];
+        leftMoreimageView=[[UIImageView alloc] initWithFrame:CGRectMake((IPAD_DEVICE)?10:5, 0, 10, scrollBgView.frame.size.height)];
         leftMoreimageView.image=[UIImage imageNamed:@"category_left_more"];
         [scrollBgView addSubview:leftMoreimageView];
         leftMoreimageView.alpha=0;
         
-        rigthMoreimageView=[[UIImageView alloc] initWithFrame:CGRectMake(WIDTH(scrollBgView)-10-((IPAD_DEVICE)?10:5), 0, 10, HEIGHT(scrollBgView))];
+        rigthMoreimageView=[[UIImageView alloc] initWithFrame:CGRectMake(scrollBgView.frame.size.width-10-((IPAD_DEVICE)?10:5), 0, 10, scrollBgView.frame.size.height)];
         rigthMoreimageView.image=[UIImage imageNamed:@"category_right_more"];
         [scrollBgView addSubview:rigthMoreimageView];
         rigthMoreimageView.alpha=1;
         
-        mScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(12, 0, WIDTH(scrollBgView)-24, HEIGHT(scrollBgView))];
+        mScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(12, 0, scrollBgView.frame.size.width-24, scrollBgView.frame.size.height)];
         mScrollView.delegate=self;
         mScrollView.scrollsToTop=NO;
         mScrollView.showsHorizontalScrollIndicator=NO;
-        mScrollView.contentSize=CGSizeMake(WIDTH(mScrollView)/colNum*[_categoryArrM count], HEIGHT(mScrollView));
-        if (mScrollView.contentSize.width<=WIDTH(mScrollView)) {
+        mScrollView.contentSize=CGSizeMake(mScrollView.frame.size.width/colNum*[_categoryArrM count], mScrollView.frame.size.height);
+        if (mScrollView.contentSize.width<=mScrollView.frame.size.width) {
             leftMoreimageView.alpha=0;
             rigthMoreimageView.alpha=0;
-            mScrollView.frame=CGRectMake(10+(WIDTH(mScrollView)-mScrollView.contentSize.width)/2, 0, WIDTH(mScrollView), HEIGHT(mScrollView));
+            mScrollView.frame=CGRectMake(10+(mScrollView.frame.size.width-mScrollView.contentSize.width)/2, 0, mScrollView.frame.size.width, mScrollView.frame.size.height);
         }
         [scrollBgView insertSubview:mScrollView atIndex:0];
         
-        UIView *naviLine=[[UIView alloc] initWithFrame:CGRectMake(0, HEIGHT(scrollBgView)-1, WIDTH(scrollBgView), 1)];
+        UIView *naviLine=[[UIView alloc] initWithFrame:CGRectMake(0, scrollBgView.frame.size.height-1, scrollBgView.frame.size.width, 1)];
         [scrollBgView addSubview:naviLine];
         naviLine.backgroundColor=[UIColor colorWithWhite:0.8 alpha:1];
         
         if ([_categoryArrM count]>0) {
-            moveView=[[UIView alloc] initWithFrame:CGRectMake(WIDTH(mScrollView)/colNum*_currentPage,HEIGHT(mScrollView)-3,
-                                                                WIDTH(mScrollView)/colNum,2)];
-            moveView.backgroundColor = [UIColor colorWithHexString:@"0x00afff"];
+            moveView=[[UIView alloc] initWithFrame:CGRectMake(mScrollView.frame.size.width/colNum*_currentPage,mScrollView.frame.size.height-3,
+                                                                mScrollView.frame.size.width/colNum,2)];
+            moveView.backgroundColor = [UIColor colorWithRed:0.0 green:175.0/256.0 blue:255.0/256.0 alpha:1];
             [mScrollView addSubview:moveView];
         }
         
@@ -111,23 +111,23 @@
             NSString *categoryStr =[_categoryArrM objectAtIndex:i];
             UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
             btn.tag=i;
-            btn.frame=CGRectMake(WIDTH(mScrollView)/colNum*i, 0, WIDTH(mScrollView)/colNum, HEIGHT(mScrollView));
+            btn.frame=CGRectMake(mScrollView.frame.size.width/colNum*i, 0, mScrollView.frame.size.width/colNum, mScrollView.frame.size.height);
             [btn addTarget:self action:@selector(touchCategoryBtn:) forControlEvents:UIControlEventTouchUpInside];
             [btn setTitle:categoryStr forState:UIControlStateNormal];
             
-            btn.frame=CGRectMake(WIDTH(mScrollView)/colNum*i, 0, WIDTH(mScrollView)/colNum, HEIGHT(mScrollView));
-            [btn setTitleColor:[UIColor colorWithHexString:@"0x666666"]  forState:UIControlStateNormal];
+            btn.frame=CGRectMake(mScrollView.frame.size.width/colNum*i, 0, mScrollView.frame.size.width/colNum, mScrollView.frame.size.height);
+            [btn setTitleColor:[UIColor colorWithRed:102.0/256.0 green:102.0/256.0 blue:102.0/256.0 alpha:1]  forState:UIControlStateNormal];
             btn.titleLabel.font=[UIFont systemFontOfSize:14];
             if (i == 0) {
-                [btn setTitleColor:[UIColor colorWithHexString:@"0x333333"]  forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor colorWithRed:51.0/256.0 green:51.0/256.0 blue:51.0/256.0 alpha:1]  forState:UIControlStateNormal];
                 btn.titleLabel.font=[UIFont boldSystemFontOfSize:14];
             }
             [mScrollView addSubview:btn];
             
-            CGSize size = [categoryStr boundingRectWithSize:CGSizeMake(WIDTH(btn), MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin|
+            CGSize size = [categoryStr boundingRectWithSize:CGSizeMake(btn.frame.size.width, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin|
                                                                                                  NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName : btn.titleLabel.font} context:nil].size;
 
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH(btn)/2+size.width/2-4, HEIGHT(btn)/2-size.height/2-4, 8, 8)];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(btn.frame.size.width/2+size.width/2-4, btn.frame.size.height/2-size.height/2-4, 8, 8)];
             imageView.image = [UIImage imageNamed:@"Message_has_new"];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             imageView.tag = i;
@@ -182,28 +182,28 @@
         UIButton *categoryBtn=[categoryBtnArrM objectAtIndex:i];
         if (i==_currentPage) {
             [UIView beginAnimations:nil context:nil];
-            moveView.frame=CGRectMake(WIDTH(mScrollView)/colNum*btn.tag,HEIGHT(mScrollView)-3,
-                                        WIDTH(mScrollView)/colNum,3);
+            moveView.frame=CGRectMake(mScrollView.frame.size.width/colNum*btn.tag,mScrollView.frame.size.height-3,
+                                        mScrollView.frame.size.width/colNum,3);
             if ([categoryBtnArrM count]>colNum) {
-                if (X(moveView)+2*WIDTH(moveView)>mScrollView.contentOffset.x+WIDTH(mScrollView)
-                    ||mScrollView.contentOffset.x+X(mScrollView)>X(moveView)) {
-                    float x=WIDTH(mScrollView)/colNum*i-WIDTH(mScrollView)/2;
+                if (moveView.frame.origin.x+2*moveView.frame.size.width>mScrollView.contentOffset.x+mScrollView.frame.size.width
+                    ||mScrollView.contentOffset.x+mScrollView.frame.origin.x>moveView.frame.origin.x) {
+                    float x=mScrollView.frame.size.width/colNum*i-mScrollView.frame.size.width/2;
                     if (x<0) {
                         x=0;
                     }
-                    if (x>mScrollView.contentSize.width-WIDTH(mScrollView)) {
-                        x=mScrollView.contentSize.width-WIDTH(mScrollView);
+                    if (x>mScrollView.contentSize.width-mScrollView.frame.size.width) {
+                        x=mScrollView.contentSize.width-mScrollView.frame.size.width;
                     }
                     mScrollView.contentOffset=CGPointMake(x, 0);
                 }
             }
-            [categoryBtn setTitleColor:[UIColor colorWithHexString:@"0x333333"]  forState:UIControlStateNormal];
+            [categoryBtn setTitleColor:[UIColor colorWithRed:51.0/256.0 green:51.0/256.0 blue:51.0/256.0 alpha:1]  forState:UIControlStateNormal];
             categoryBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
             [UIView commitAnimations];
         }
         else{
-            categoryBtn.frame=CGRectMake(WIDTH(mScrollView)/colNum*i, 0, WIDTH(mScrollView)/colNum, HEIGHT(mScrollView));
-            [categoryBtn setTitleColor:[UIColor colorWithHexString:@"0x666666"]  forState:UIControlStateNormal];
+            categoryBtn.frame=CGRectMake(mScrollView.frame.size.width/colNum*i, 0, mScrollView.frame.size.width/colNum, mScrollView.frame.size.height);
+            [categoryBtn setTitleColor:[UIColor colorWithRed:102.0/256.0 green:102.0/256.0 blue:102.0/256.0 alpha:1]  forState:UIControlStateNormal];
             categoryBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         }
     }
@@ -213,11 +213,11 @@
 }
 #pragma mark - public
 - (void)moveMoveView:(CGFloat)rate{
-    CGFloat WIDTH_CATEGORY_BUTTON = WIDTH(mScrollView)/colNum;
+    CGFloat WIDTH_CATEGORY_BUTTON = mScrollView.frame.size.width/colNum;
     CGFloat x = WIDTH_CATEGORY_BUTTON*_currentPage;
     CGFloat w = moveView.frame.size.width;
     x = x + w * rate;
-    moveView.frame = CGRectMake(x, Y(moveView), WIDTH(moveView), HEIGHT(moveView));
+    moveView.frame = CGRectMake(x, moveView.frame.origin.y, moveView.frame.size.width, moveView.frame.size.height);
 }
 
 -(void)moveCategoryWithTitle:(NSString*)title{
@@ -235,14 +235,14 @@
     for (int i=0; i<[categoryBtnArrM count]; i++) {
         UIButton *categoryBtn=[categoryBtnArrM objectAtIndex:i];
         if (i==_currentPage) {
-            moveView.frame=CGRectMake(WIDTH(mScrollView)/colNum*i,HEIGHT(mScrollView)-3,
-                                        WIDTH(mScrollView)/colNum,3);
-            [categoryBtn setTitleColor:[UIColor colorWithHexString:@"0x333333"]  forState:UIControlStateNormal];
+            moveView.frame=CGRectMake(mScrollView.frame.size.width/colNum*i,mScrollView.frame.size.height-3,
+                                        mScrollView.frame.size.width/colNum,3);
+            [categoryBtn setTitleColor:[UIColor colorWithRed:51.0/256.0 green:51.0/256.0 blue:51.0/256.0 alpha:1]  forState:UIControlStateNormal];
             categoryBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         }
         else{
-            categoryBtn.frame=CGRectMake(WIDTH(mScrollView)/colNum*i, 0, WIDTH(mScrollView)/colNum, HEIGHT(mScrollView));
-            [categoryBtn setTitleColor:[UIColor colorWithHexString:@"0x666666"]  forState:UIControlStateNormal];
+            categoryBtn.frame=CGRectMake(mScrollView.frame.size.width/colNum*i, 0, mScrollView.frame.size.width/colNum, mScrollView.frame.size.height);
+            [categoryBtn setTitleColor:[UIColor colorWithRed:102.0/256.0 green:102.0/256.0 blue:102.0/256.0 alpha:1]  forState:UIControlStateNormal];
             categoryBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         }
     }
