@@ -9,14 +9,19 @@
 #import "GmlScrollCategoryView.h"
 #define IPAD_DEVICE  (([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) ? 1 : 0)
 @interface GmlScrollCategoryView()<UIScrollViewDelegate>{
-    
+    /*背景图片*/
     UIImageView *scrollBgView;
+    /* 滚动视图 */
     UIScrollView *mScrollView;
+    /* 当前分类的下划线标记 */
     UIView *moveView;
+    /* 分类对应button的数组 */
     NSMutableArray *categoryBtnArrM;
+    /* 左边还有更多分类的标记 */
     UIImageView *leftMoreimageView;
+    /* 右边还有更多分类的标记 */
     UIImageView *rigthMoreimageView;
-    
+    /* 屏幕宽度显示的最大分类数 */
     float colNum;
 }
 @end
@@ -115,13 +120,8 @@
                 btn.titleLabel.font=[UIFont boldSystemFontOfSize:14];
             }
             [mScrollView addSubview:btn];
-            
-            CGSize size = [categoryStr boundingRectWithSize:CGSizeMake(btn.frame.size.width, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin|
-                                                                                                 NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName : btn.titleLabel.font} context:nil].size;
-            
             [categoryBtnArrM addObject:btn];
         }
-
     }
     return self;
 }

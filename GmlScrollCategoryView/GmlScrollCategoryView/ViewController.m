@@ -26,6 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.view.backgroundColor = [UIColor lightGrayColor];
     _dataDicM = [[NSMutableDictionary alloc] init];
     if (self.category == nil) {
         self.category = @"过人大全";
