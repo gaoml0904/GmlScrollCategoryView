@@ -15,12 +15,26 @@
 
 @implementation AppDelegate
 
+- (UIImage*)imageWithColor:(UIColor*)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 8.0f, 8.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage*theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     ViewController *rootVc = [[ViewController alloc] init];
     UINavigationController *rootNavi = [[UINavigationController alloc] initWithRootViewController:rootVc];
+    [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.07 green:0.53 blue:0.98 alpha:1]] forBarMetrics:UIBarMetricsDefault];
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window.rootViewController = rootNavi;
     [self.window makeKeyAndVisible];
     return YES;

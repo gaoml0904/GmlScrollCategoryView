@@ -29,6 +29,7 @@
     _dataDicM = [[NSMutableDictionary alloc] init];
     if (self.category == nil) {
         self.category = @"过人大全";
+        self.title = self.category;
         [self getCategoryData];
     }
 }
