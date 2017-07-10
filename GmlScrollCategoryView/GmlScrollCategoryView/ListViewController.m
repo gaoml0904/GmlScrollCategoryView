@@ -6,12 +6,12 @@
 //  Copyright © 2017年 maolin gao. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ListViewController.h"
 #import "GmlScrollCategoryView.h"
 #import "GmlListScrollView.h"
 #import "DataProvider.h"
 
-@interface ViewController ()<CategoryViewDelegate,GmlListScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface ListViewController ()<CategoryViewDelegate,GmlListScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)NSMutableDictionary *dataDicM;
 @property(nonatomic,strong)UITableView *tableView;
@@ -20,7 +20,7 @@
 @property(nonatomic,strong)DataProvider *dataProvider;
 @end
 
-@implementation ViewController
+@implementation ListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,7 +65,7 @@
         NSMutableArray *childVCArrM = [[NSMutableArray alloc] init];
         for (int i = 0; i < _categoryView.categoryArrM.count; i++) {
             
-            ViewController *itemVC =[[ViewController alloc] init];
+            ListViewController *itemVC =[[ListViewController alloc] init];
             if (self.weakNavi) {
                 itemVC.weakNavi = self.weakNavi;
             } else {
@@ -87,7 +87,7 @@
                                                  _listScrollView.frame.size.height);
         [self.view insertSubview:_listScrollView atIndex:0];
         if (_listScrollView.childVCArr.count > 0) {
-            ViewController *itemVC = (ViewController *)_listScrollView.childVCArr[0];
+            ListViewController *itemVC = (ListViewController *)_listScrollView.childVCArr[0];
             [itemVC getCategoryData];
         }
     } else {
@@ -101,7 +101,7 @@
 #pragma mark CategoryViewDelegate
 -(void)categoryView:(GmlScrollCategoryView*)categoryView touchCategoryBtn:(UIButton*)categoryBtn {
     
-    ViewController *itemVC = _listScrollView.childVCArr[categoryView.currentPage];
+    ListViewController *itemVC = _listScrollView.childVCArr[categoryView.currentPage];
     [itemVC getCategoryData];
     [_listScrollView scrollToPage:categoryView.currentPage];
 }

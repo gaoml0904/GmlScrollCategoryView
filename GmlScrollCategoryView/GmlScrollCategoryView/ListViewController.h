@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ListViewController.h
 //  GmlScrollCategoryView
 //
 //  Created by maolin gao on 2017/7/6.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ListViewController : UIViewController
 
 @property(nonatomic,weak)UINavigationController *weakNavi;
 @property(nonatomic,copy)NSString *category;

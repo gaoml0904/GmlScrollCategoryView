@@ -114,6 +114,7 @@
             
             btn.frame=CGRectMake(mScrollView.frame.size.width/colNum*i, 0, mScrollView.frame.size.width/colNum, mScrollView.frame.size.height);
             [btn setTitleColor:[UIColor colorWithRed:102.0/256.0 green:102.0/256.0 blue:102.0/256.0 alpha:1]  forState:UIControlStateNormal];
+            btn.titleLabel.adjustsFontSizeToFitWidth = true;
             btn.titleLabel.font=[UIFont systemFontOfSize:14];
             if (i == 0) {
                 [btn setTitleColor:[UIColor colorWithRed:51.0/256.0 green:51.0/256.0 blue:51.0/256.0 alpha:1]  forState:UIControlStateNormal];

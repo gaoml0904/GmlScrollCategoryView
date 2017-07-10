@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "ListViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,7 +30,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    ViewController *rootVc = [[ViewController alloc] init];
+    ListViewController *rootVc = [[ListViewController alloc] init];
     UINavigationController *rootNavi = [[UINavigationController alloc] initWithRootViewController:rootVc];
     [[UINavigationBar appearance] setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.07 green:0.53 blue:0.98 alpha:1]] forBarMetrics:UIBarMetricsDefault];
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
